@@ -1,4 +1,4 @@
-const CoinIcon = () => (
+const CoinIcon = ({ name }) => (
   <svg
     id="money"
     xmlns="http://www.w3.org/2000/svg"
@@ -7,6 +7,7 @@ const CoinIcon = () => (
     height="24"
     viewBox="0 0 24 24"
   >
+    <title>{name ? name : "Coin"}</title>
     <defs>
       <radialGradient
         id="radial-gradient-coin"

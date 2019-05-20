@@ -1,14 +1,15 @@
-import styled from "styled-components";
 import CardItem from "./CardItem";
+import styled from "styled-components";
 
 const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: flex;
   grid-gap: 24px;
+  flex-wrap: wrap;
   max-width: 1176px;
-  @media (max-width: 1440px) {
-    margin: 0;
-    grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  /* grid-template-columns: auto; */
+  @media (max-width: 876px) {
+    justify-content: space-around;
   }
   @media (max-width: 440px) {
     grid-template-columns: 1fr;
@@ -19,7 +20,9 @@ const Products = ({ products }) => {
     <Grid>
       {products != null &&
         products.map(product => {
-          return <CardItem key={product._id} item={product} />;
+          return (
+            <CardItem className="product" key={product._id} item={product} />
+          );
         })}
     </Grid>
   );

@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import CoinIcon from "../components/CoinIcon";
+import styled from "styled-components";
 
 const Display = styled.div`
   height: 48px;
@@ -8,7 +8,7 @@ const Display = styled.div`
   display: flex;
   align-items: center;
   background: ${props => props.theme.offWhite};
-  padding: 12px;
+  padding: 8px 12px;
   span {
     margin-right: 4px;
   }
@@ -17,7 +17,7 @@ const Display = styled.div`
 const DisplayCoin = ({ text }) => (
   <Display>
     <span>{text}</span>
-    <CoinIcon />
+    <CoinIcon name="Coins" />
   </Display>
 );
 

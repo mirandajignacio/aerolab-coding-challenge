@@ -1,9 +1,9 @@
-import styled from "styled-components";
 import AeroLogo from "./AeroLogo";
-import Router from "next/router";
-import NProgress from "nprogress";
-import Link from "next/link";
 import DisplayCoin from "./DisplayCoin";
+import Link from "next/link";
+import NProgress from "nprogress";
+import Router from "next/router";
+import styled from "styled-components";
 
 NProgress.configure({ showSpinner: false });
 
@@ -25,7 +25,7 @@ const Header = styled.header`
   width: 100%;
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 9;
   transition: all 0.2s ease;
   box-shadow: ${props =>
     props.scrolling
@@ -39,6 +39,9 @@ const Header = styled.header`
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    @media (max-width: 1440px) {
+      padding: 40px;
+    }
   }
   .logo {
     display: flex;

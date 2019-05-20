@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+
 import Layout from "./Layout";
 import Meta from "./Meta";
 
@@ -41,13 +42,37 @@ const GlobalStyle = createGlobalStyle`
   font-weight: normal;
   font-style: normal;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #ff8800; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 html {
   box-sizing: border-box;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
   margin: 0;
 }
+
 body {
   padding: 0;
   margin: 0;
@@ -55,6 +80,7 @@ body {
   line-height: 2;
   font-family: 'Source Sans Pro', sans-serif;
 }
+
 a {
   text-decoration: none;
   color: ${theme.black};
@@ -99,7 +125,7 @@ class Page extends Component {
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Meta />
-          <Layout scrolling={this.state.scrolling} />
+          <Layout scrolling={this.state.scrolling ? 1 : 0} />
           <Block />
           <Inner>{this.props.children}</Inner>
           <GlobalStyle />
