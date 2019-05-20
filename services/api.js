@@ -1,13 +1,13 @@
 import axios from "axios";
 
 const BASE_URL = "https://aerolab-challenge.now.sh";
-const SUPER_SECRET_TOKEN_DO_NOT_CHANGE_OR_YOU_WILL_BE_FIRED =
+const SUPER_SECRET_TOKEN =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RmODY4YzU4YzIzNzAwNmQxMDk0NGYiLCJpYXQiOjE1NTgxNTI4NDR9.y1IC7N7UP4-tBejqtIb-uhxvqvdJF9Y1pid-6MwFQ0Y";
 const DEFAULT_OPTIONS = {
   crossDomain: true,
   responseType: "json",
   headers: {
-    Authorization: `Bearer ${SUPER_SECRET_TOKEN_DO_NOT_CHANGE_OR_YOU_WILL_BE_FIRED}`,
+    Authorization: `Bearer ${SUPER_SECRET_TOKEN}`,
     "Content-Type": "application/json"
   }
 };
@@ -38,6 +38,7 @@ const api = {
        *   createDate: string,
        * }
        */
+      console.log("BARBI ME ROMPISTE EL CÓDIGO");
       return api.request({ url: "/user/me", method: "GET" });
     },
     points: function(amount) {

@@ -1,54 +1,26 @@
-import AeroLogo from "./AeroLogo";
-import DisplayCoin from "./DisplayCoin";
 import Link from "next/link";
-import NProgress from "nprogress";
 import Router from "next/router";
 import styled from "styled-components";
+import AeroIcon from "./icons/AeroIcon";
+import DisplayCoin from "./DisplayCoin";
+import NProgress from "nprogress";
+import HeaderStyled from "./styled/HeaderStyled";
+import React, { useEffect, useState } from "react";
+import api from "../services/api";
 
 NProgress.configure({ showSpinner: false });
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
 };
+
 Router.onRouteChangeComplete = () => {
   NProgress.done();
 };
+
 Router.onRouteChangeError = () => {
   console.log("onRouteChangeStart");
 };
-
-const Header = styled.header`
-  height: 80px;
-  background: white;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 9;
-  transition: all 0.2s ease;
-  box-shadow: ${props =>
-    props.scrolling
-      ? "0 0 12px 0 rgba(0, 0, 0, 0.12), 0 4px 12px 0 rgba(0, 0, 0, 0.2)"
-      : "none"};
-  .content {
-    padding: 4px;
-    max-width: ${props => props.theme.maxWidth};
-    height: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    @media (max-width: 1440px) {
-      padding: 40px;
-    }
-  }
-  .logo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-`;
 
 const Button = styled.button`
   padding: 12px;
@@ -61,7 +33,7 @@ const Button = styled.button`
     color: white;
     box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.12), 0 4px 12px 0 rgba(0, 0, 0, 0.2);
     background: linear-gradient(to bottom, #ff8800, #ff6600);
-    border: none;
+    border: 1px solid linear-gradient(to bottom, #ff8800, #ff6600);
   }
 `;
 
@@ -87,21 +59,34 @@ const DisplayUser = styled.div`
 `;
 
 const Layout = props => {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await api.user.me();
+      console.log(JSON.stringify(result));
+      setUser(result);
+    }
+    fetchData();
+  }, {});
+
   return (
-    <Header {...props}>
+    <HeaderStyled {...props}>
       <div className="content">
         <Link href="/">
           <a className="logo">
-            <AeroLogo />
+            <AeroIcon />
           </a>
         </Link>
-        <DisplayUser>
-          <p>MIRANDA J IGNACIO</p>
-          <DisplayCoin text={"6000"} />
-        </DisplayUser>
+        {user && (
+          <DisplayUser>
+            <p>{user.name}</p>
+            <DisplayCoin text={user.points} />
+          </DisplayUser>
+        )}
       </div>
       {/* <Button>INGRESAR</Button> */}
-    </Header>
+    </HeaderStyled>
   );
 };
 

@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-
-import Link from "next/link";
+import styled from "styled-components";
 import Menu from "../components/Menu";
 import Products from "../components/Products";
-import api from "../services/api";
-import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
@@ -13,6 +10,7 @@ const Container = styled.div`
   justify-content: center;
   flex-direction: column;
 `;
+
 const Flayer = styled.div`
   width: 100%;
   height: 400px;
@@ -31,6 +29,10 @@ const Content = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+`;
+
+const Body = styled.div`
+  max-width: 1176px;
 `;
 
 export default function Index() {
@@ -371,11 +373,13 @@ export default function Index() {
       <Flayer>
         <h1>Electronics</h1>
       </Flayer>
-      <Menu />
-      <Content>
-        {products.length > 0 && <Products products={products} />}
-      </Content>
-      <Menu bottom />
+      <Body>
+        <Menu />
+        <Content>
+          {products.length > 0 && <Products products={products} />}
+        </Content>
+        <Menu bottom />
+      </Body>
     </Container>
   );
 }

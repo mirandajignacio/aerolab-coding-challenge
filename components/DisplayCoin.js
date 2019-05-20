@@ -1,4 +1,4 @@
-import CoinIcon from "../components/CoinIcon";
+import CoinIcon from "./icons/CoinIcon";
 import styled from "styled-components";
 
 const Display = styled.div`

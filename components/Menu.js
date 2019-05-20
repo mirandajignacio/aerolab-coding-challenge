@@ -1,16 +1,24 @@
-import ArrowRightIcon from "./ArrowRightIcon";
+import ArrowRightIcon from "./icons/ArrowRightIcon";
 import styled from "styled-components";
 
 const MenuStyled = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: start;
-  width: 1176px;
+  width: 100%;
   /* max-width: 1176px; */
   margin-top: 64px;
   margin-bottom: 40px;
   padding-bottom: 24px;
   border-bottom: 1px solid #d9d9d9;
   position: relative;
+  @media (max-width: 1176px) {
+    padding-right: 8px;
+    padding-left: 8px;
+    .icon {
+      margin-right: 8px;
+    }
+  }
 `;
 
 const Icon = styled.div`
@@ -49,10 +57,6 @@ const Filter = styled.div`
   }
 `;
 
-const pStyle = {
-  "align-self": "flex-end"
-};
-
 const Menu = ({ bottom }) => {
   return (
     <MenuStyled>
@@ -67,7 +71,7 @@ const Menu = ({ bottom }) => {
         </>
       )}
 
-      <Icon>
+      <Icon className="icon">
         <ArrowRightIcon name="Next page" />
       </Icon>
     </MenuStyled>

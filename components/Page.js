@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 
-import Layout from "./Layout";
+import Header from "./Header";
 import Meta from "./Meta";
 
 const theme = {
@@ -18,17 +18,11 @@ const theme = {
 const StyledPage = styled.div`
   background: ${props => props.theme.lightgrey};
   color: ${props => props.theme.black};
-  /* min-width: 100vw;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center; */
 `;
 
 const Inner = styled.div`
   max-width: ${props => props.theme.maxWidth};
-  margin: 0 auto;
-  margin-bottom: 72px;
-  /*padding: 0 2rem; */
+  margin: auto;
 `;
 
 const Block = styled.div`
@@ -94,6 +88,7 @@ class Page extends Component {
   state = {
     scrolling: false
   };
+
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
   }
@@ -125,7 +120,7 @@ class Page extends Component {
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Meta />
-          <Layout scrolling={this.state.scrolling ? 1 : 0} />
+          <Header scrolling={this.state.scrolling ? 1 : 0} />
           <Block />
           <Inner>{this.props.children}</Inner>
           <GlobalStyle />

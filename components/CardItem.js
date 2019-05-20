@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-
-import BuyIcon from "../components/BuyIcon";
-import CoinIcon from "../components/CoinIcon";
+import format from "../lib/format";
+import BuyIcon from "./icons/BuyIcon";
+import CoinIcon from "./icons/CoinIcon";
 import styled from "styled-components";
+import api from "../services/api";
 
 const Card = styled.div`
   background-color: white;
@@ -66,8 +67,8 @@ const OverlayContent = styled.div`
   }
 `;
 const Image = styled.img`
-  max-width: 252px;
-  max-height: 182px;
+  width: 252px;
+  height: 182px;
 `;
 const Divider = styled.div`
   width: 228px;
@@ -78,9 +79,12 @@ const Price = styled.div``;
 const Wrapper = styled.div`
   padding: 12px;
   position: relative;
+  width: 100%;
 `;
 const DisplayImage = styled.div`
   position: relative;
+  width: 100%;
+  height: 100%;
 `;
 
 const Icon = styled.div`
@@ -163,6 +167,11 @@ const Button = styled.button`
   span {
   }
 `;
+
+const Buy = productId => {
+  api.redeem(productId).then(r => console.log("BARBI SE COMPRÓ", r));
+};
+
 const CardItem = ({ item }) => {
   const [hover, setHover] = useState(false);
   const canBuy = cost > 1000;
@@ -186,10 +195,10 @@ const CardItem = ({ item }) => {
           </Overlay>
           <OverlayContent className="overlay">
             <Price>
-              <span>{cost}</span>
+              <span>{format(cost)}</span>
               <CoinIcon />
             </Price>
-            <Button>REDEEM NOW</Button>
+            <Button onClick={() => Buy(id)}>REDEEM NOW</Button>
             {/* <Action>
               <span>REDEEM NOW</span>
             </Action> */}
