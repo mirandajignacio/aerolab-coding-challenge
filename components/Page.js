@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+import React, { Component } from 'react';
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 
-import Header from "./Header";
-import Meta from "./Meta";
+import Nav from './Nav';
+import Meta from './Meta';
 
 const theme = {
-  red: "#FF0000",
-  black: "#616161",
-  grey: "#3A3A3A",
-  white: "#FFFFFF",
-  lightgrey: "#F9F9F9",
-  offWhite: "#EDEDED",
-  maxWidth: "1440px",
-  bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)"
+  red: '#FF0000',
+  black: '#616161',
+  grey: '#3A3A3A',
+  white: '#FFFFFF',
+  lightgrey: '#F9F9F9',
+  offWhite: '#EDEDED',
+  maxWidth: '1440px',
+  bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
 };
 
 const StyledPage = styled.div`
@@ -86,25 +86,26 @@ let ticking = false;
 
 class Page extends Component {
   state = {
-    scrolling: false
+    scrolling: false,
   };
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   handleScroll = () => {
+    const { scrolling } = this.state;
     lastScrollY = window.scrollY;
 
     if (!ticking) {
       window.requestAnimationFrame(() => {
-        if (lastScrollY == 0) {
+        if (lastScrollY === 0) {
           this.setState({ scrolling: false });
-        } else if (!this.state.scrolling) {
+        } else if (!scrolling) {
           this.setState({ scrolling: true });
         }
 
@@ -116,13 +117,15 @@ class Page extends Component {
   };
 
   render() {
+    const { scrolling } = this.state;
+    const { children } = this.props;
     return (
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Meta />
-          <Header scrolling={this.state.scrolling ? 1 : 0} />
+          <Nav scrolling={scrolling ? 1 : 0} />
           <Block />
-          <Inner>{this.props.children}</Inner>
+          <Inner>{children}</Inner>
           <GlobalStyle />
         </StyledPage>
       </ThemeProvider>

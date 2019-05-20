@@ -1,5 +1,5 @@
-import ArrowRightIcon from "./icons/ArrowRightIcon";
-import styled from "styled-components";
+import styled from 'styled-components';
+import ArrowRightIcon from './icons/ArrowRightIcon';
 
 const MenuStyled = styled.div`
   display: flex;
@@ -49,33 +49,31 @@ const Filter = styled.div`
   margin-left: 24px;
   padding: 8px 24px;
   border-radius: 24px;
-  color: ${props => (props.active ? "white" : "#a3a3a3")};
-  background: ${props => (props.active ? "#0AD4FA" : "#ededed")};
+  color: ${props => (props.active ? 'white' : '#a3a3a3')};
+  background: ${props => (props.active ? '#0AD4FA' : '#ededed')};
   font-size: 24px;
   &:hover {
-    cursor: ${props => (props.active ? "default" : "pointer")};
+    cursor: ${props => (props.active ? 'default' : 'pointer')};
   }
 `;
 
-const Menu = ({ bottom }) => {
-  return (
-    <MenuStyled>
-      <Products>16 of 32 products</Products>
-      {!bottom && (
-        <>
-          <Divider />
-          <Sort>Sort by:</Sort>
-          <Filter active={true ? 1 : 0}>Most Recent</Filter>
-          <Filter>Lowest Price</Filter>
-          <Filter>Highest Price</Filter>
-        </>
-      )}
+const Menu = ({ bottom }) => (
+  <MenuStyled>
+    <Products>16 of 32 products</Products>
+    {!bottom && (
+      <>
+        <Divider />
+        <Sort>Sort by:</Sort>
+        <Filter active={true ? 1 : 0}>Most Recent</Filter>
+        <Filter>Lowest Price</Filter>
+        <Filter>Highest Price</Filter>
+      </>
+    )}
 
-      <Icon className="icon">
-        <ArrowRightIcon name="Next page" />
-      </Icon>
-    </MenuStyled>
-  );
-};
+    <Icon className="icon">
+      <ArrowRightIcon name="Next page" />
+    </Icon>
+  </MenuStyled>
+);
 
 export default Menu;

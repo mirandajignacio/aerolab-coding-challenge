@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import format from "../lib/format";
-import BuyIcon from "./icons/BuyIcon";
-import CoinIcon from "./icons/CoinIcon";
-import styled from "styled-components";
-import api from "../services/api";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import format from '../lib/format';
+import BuyIcon from './icons/BuyIcon';
+import CoinIcon from './icons/CoinIcon';
+import api from '../services/api';
 
 const Card = styled.div`
   background-color: white;
@@ -21,8 +21,8 @@ const Card = styled.div`
     transition: all 0.2s ease;
     box-shadow: ${props =>
       props.disabled
-        ? "1px 1px 2px 0 rgba(0, 0, 0, 0.1)"
-        : "0 0 12px 0 rgba(0, 0, 0, 0.12), 0 4px 12px 0 rgba(0, 0, 0, 0.2)"};
+        ? '1px 1px 2px 0 rgba(0, 0, 0, 0.1)'
+        : '0 0 12px 0 rgba(0, 0, 0, 0.12), 0 4px 12px 0 rgba(0, 0, 0, 0.2)'};
     .overlay {
       display: flex;
     }
@@ -169,7 +169,7 @@ const Button = styled.button`
 `;
 
 const Buy = productId => {
-  api.redeem(productId).then(r => console.log("BARBI SE COMPRÓ", r));
+  api.redeem(productId).then(r => console.log('BARBI SE COMPRÓ', r));
 };
 
 const CardItem = ({ item }) => {

@@ -1,5 +1,5 @@
-import CardItem from "./CardItem";
-import styled from "styled-components";
+import styled from 'styled-components';
+import CardItem from './CardItem';
 
 const Grid = styled.div`
   display: grid;
@@ -25,17 +25,13 @@ const Grid = styled.div`
     grid-template-columns: 1fr;
   }
 `;
-const Products = ({ products }) => {
-  return (
-    <Grid>
-      {products != null &&
-        products.map(product => {
-          return (
-            <CardItem className="product" key={product._id} item={product} />
-          );
-        })}
-    </Grid>
-  );
-};
+const Products = ({ products }) => (
+  <Grid>
+    {products != null &&
+      products.map(product => (
+        <CardItem className="product" key={product._id} item={product} />
+      ))}
+  </Grid>
+);
 
 export default Products;

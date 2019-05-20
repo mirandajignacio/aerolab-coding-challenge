@@ -1,5 +1,5 @@
-import CoinIcon from "./icons/CoinIcon";
-import styled from "styled-components";
+import styled from 'styled-components';
+import CoinIcon from './icons/CoinIcon';
 
 const Display = styled.div`
   height: 48px;

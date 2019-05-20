@@ -7,7 +7,7 @@ const CoinIcon = ({ name }) => (
     height="24"
     viewBox="0 0 24 24"
   >
-    <title>{name ? name : "Coin"}</title>
+    <title>{name || 'Coin'}</title>
     <defs>
       <radialGradient
         id="radial-gradient-coin"

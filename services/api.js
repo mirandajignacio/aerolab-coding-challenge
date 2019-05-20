@@ -1,24 +1,24 @@
-import axios from "axios";
+import axios from 'axios';
 
-const BASE_URL = "https://aerolab-challenge.now.sh";
+const BASE_URL = 'https://aerolab-challenge.now.sh';
 const SUPER_SECRET_TOKEN =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RmODY4YzU4YzIzNzAwNmQxMDk0NGYiLCJpYXQiOjE1NTgxNTI4NDR9.y1IC7N7UP4-tBejqtIb-uhxvqvdJF9Y1pid-6MwFQ0Y";
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RmODY4YzU4YzIzNzAwNmQxMDk0NGYiLCJpYXQiOjE1NTgxNTI4NDR9.y1IC7N7UP4-tBejqtIb-uhxvqvdJF9Y1pid-6MwFQ0Y';
 const DEFAULT_OPTIONS = {
   crossDomain: true,
-  responseType: "json",
+  responseType: 'json',
   headers: {
     Authorization: `Bearer ${SUPER_SECRET_TOKEN}`,
-    "Content-Type": "application/json"
-  }
+    'Content-Type': 'application/json',
+  },
 };
 
 const api = {
-  request: async function({ url, method, data = {}, options = {} }) {
+  async request({ url, method, data = {}, options = {} }) {
     try {
       const response = await axios(BASE_URL + url, {
         ...DEFAULT_OPTIONS,
         method,
-        data
+        data,
       });
       if (response.status !== 200) throw response;
       return response.data;
@@ -27,7 +27,7 @@ const api = {
     }
   },
   user: {
-    me: function() {
+    me() {
       /**
        * {
        *   _id: string,
@@ -38,10 +38,10 @@ const api = {
        *   createDate: string,
        * }
        */
-      console.log("BARBI ME ROMPISTE EL CÓDIGO");
-      return api.request({ url: "/user/me", method: "GET" });
+      console.log('BARBI ME ROMPISTE EL CÓDIGO');
+      return api.request({ url: '/user/me', method: 'GET' });
     },
-    points: function(amount) {
+    points(amount) {
       /**
        * {
        *   message: string,
@@ -49,12 +49,12 @@ const api = {
        * }
        */
       return api.request({
-        url: "/user/points",
-        method: "POST",
-        data: { amount }
+        url: '/user/points',
+        method: 'POST',
+        data: { amount },
       });
     },
-    history: function() {
+    history() {
       /**
        * {
        *   productId: string,
@@ -70,24 +70,24 @@ const api = {
        * }
        */
       return api.request({
-        url: "/user/history",
-        method: "GET"
+        url: '/user/history',
+        method: 'GET',
       });
-    }
+    },
   },
-  redeem: function(productId) {
+  redeem(productId) {
     /**
      * {
      *   productId: string,
      * }
      */
     return api.request({
-      url: "/redeem",
-      method: "POST",
-      data: { productId }
+      url: '/redeem',
+      method: 'POST',
+      data: { productId },
     });
   },
-  products: function() {
+  products() {
     /**
      * {
      *   _id: string,
@@ -101,10 +101,10 @@ const api = {
      * }
      */
     return api.request({
-      url: "/products",
-      method: "GET"
+      url: '/products',
+      method: 'GET',
     });
-  }
+  },
 };
 
 export default api;

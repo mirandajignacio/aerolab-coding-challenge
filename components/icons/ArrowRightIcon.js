@@ -6,7 +6,7 @@ const ArrowRightIcon = ({ name }) => (
     height="48"
     viewBox="0 0 48 48"
   >
-    <title>{name ? name : "Arrow right"}</title>
+    <title>{name || 'Arrow right'}</title>
     <g
       id="Oval_4"
       fill="none"

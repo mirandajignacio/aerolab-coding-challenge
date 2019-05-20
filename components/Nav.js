@@ -1,12 +1,12 @@
-import Link from "next/link";
-import Router from "next/router";
-import styled from "styled-components";
-import AeroIcon from "./icons/AeroIcon";
-import DisplayCoin from "./DisplayCoin";
-import NProgress from "nprogress";
-import HeaderStyled from "./styled/HeaderStyled";
-import React, { useEffect, useState } from "react";
-import api from "../services/api";
+import Link from 'next/link';
+import Router from 'next/router';
+import styled from 'styled-components';
+import NProgress from 'nprogress';
+import React, { useEffect, useState } from 'react';
+import AeroIcon from './icons/AeroIcon';
+import DisplayCoin from './DisplayCoin';
+import NavStyled from './styled/Nav';
+import api from '../services/api';
 
 NProgress.configure({ showSpinner: false });
 
@@ -19,23 +19,8 @@ Router.onRouteChangeComplete = () => {
 };
 
 Router.onRouteChangeError = () => {
-  console.log("onRouteChangeStart");
+  console.log('onRouteChangeStart');
 };
-
-const Button = styled.button`
-  padding: 12px;
-  background: white;
-  color: #ff8800;
-  border-radius: 8px;
-  border: 1px solid #ff8800;
-  &:hover {
-    cursor: pointer;
-    color: white;
-    box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.12), 0 4px 12px 0 rgba(0, 0, 0, 0.2);
-    background: linear-gradient(to bottom, #ff8800, #ff6600);
-    border: 1px solid linear-gradient(to bottom, #ff8800, #ff6600);
-  }
-`;
 
 const DisplayUser = styled.div`
   display: flex;
@@ -58,7 +43,7 @@ const DisplayUser = styled.div`
   }
 `;
 
-const Layout = props => {
+const Nav = props => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -71,7 +56,7 @@ const Layout = props => {
   }, {});
 
   return (
-    <HeaderStyled {...props}>
+    <NavStyled {...props}>
       <div className="content">
         <Link href="/">
           <a className="logo">
@@ -86,8 +71,8 @@ const Layout = props => {
         )}
       </div>
       {/* <Button>INGRESAR</Button> */}
-    </HeaderStyled>
+    </NavStyled>
   );
 };
 
-export default Layout;
+export default Nav;
