@@ -46,6 +46,25 @@ const Overlay = styled.div`
     margin-right: 8px;
   }
 `;
+
+const OverlayContent = styled.div`
+  display: none;
+  min-width: 276px;
+  min-height: 276px;
+  max-width: 276px;
+  max-height: 276px;
+  position: absolute;
+  z-index: 1;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  span {
+    color: white;
+    font-size: 36px;
+    margin-right: 8px;
+  }
+`;
 const Image = styled.img`
   max-width: 252px;
   max-height: 182px;
@@ -55,6 +74,7 @@ const Divider = styled.div`
   border-bottom: 1px solid #d9d9d9;
 `;
 
+const Price = styled.div``;
 const Wrapper = styled.div`
   padding: 12px;
   position: relative;
@@ -108,6 +128,7 @@ const DisplayCoin = styled.div`
   }
 `;
 const Action = styled.div`
+  width: 228px;
   cursor: pointer;
   height: 36px;
   background: white;
@@ -116,11 +137,30 @@ const Action = styled.div`
   align-content: center;
   align-items: center;
   border-radius: 24px;
-  padding: 8px 64px;
-  margin-top: 12px;
+  padding: 8px 0px;
+  /* margin-top: 12px; */
   span {
     color: #616161;
     font-size: 18px;
+  }
+`;
+
+const Button = styled.button`
+  cursor: pointer;
+  width: 228px;
+  height: 36px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border-radius: 24px;
+  padding: 8px 0px;
+  margin-top: 12px;
+  border: none;
+  color: #616161;
+  font-size: 18px;
+  span {
   }
 `;
 const CardItem = ({ item }) => {
@@ -134,15 +174,27 @@ const CardItem = ({ item }) => {
       disabled={cost > 1000}
     >
       {cost < 1000 ? (
-        <Overlay className="overlay">
-          <div>
+        <>
+          <Overlay className="overlay">
+            {/* <div>
             <span>{cost}</span>
             <CoinIcon />
-          </div>
-          <Action>
+            </div>
+            <Action>
             <span>REDEEM NOW</span>
-          </Action>
-        </Overlay>
+          </Action> */}
+          </Overlay>
+          <OverlayContent className="overlay">
+            <Price>
+              <span>{cost}</span>
+              <CoinIcon />
+            </Price>
+            <Button>REDEEM NOW</Button>
+            {/* <Action>
+              <span>REDEEM NOW</span>
+            </Action> */}
+          </OverlayContent>
+        </>
       ) : null}
 
       <Wrapper>
