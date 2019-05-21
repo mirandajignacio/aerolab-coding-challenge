@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 import styled from 'styled-components';
 import format from '../lib/format';
 import BuyIcon from './icons/BuyIcon';
@@ -174,8 +174,8 @@ const Buy = productId => {
 
 const CardItem = ({ item }) => {
   const [hover, setHover] = useState(false);
-  const canBuy = cost > 1000;
   const { _id: id, name, cost, category, img } = item;
+  const canBuy = cost > 1000;
   return (
     <Card
       onMouseEnter={() => setHover(true)}
@@ -183,7 +183,7 @@ const CardItem = ({ item }) => {
       disabled={cost > 1000}
     >
       {cost < 1000 ? (
-        <>
+        <Fragment>
           <Overlay className="overlay">
             {/* <div>
             <span>{cost}</span>
@@ -203,7 +203,7 @@ const CardItem = ({ item }) => {
               <span>REDEEM NOW</span>
             </Action> */}
           </OverlayContent>
-        </>
+        </Fragment>
       ) : null}
 
       <Wrapper>

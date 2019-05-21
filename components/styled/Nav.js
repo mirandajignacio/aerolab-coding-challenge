@@ -10,10 +10,7 @@ const Nav = styled.header`
   top: 0;
   z-index: 9;
   transition: all 0.2s ease;
-  box-shadow: ${props =>
-    props.scrolling
-      ? '0 0 12px 0 rgba(0, 0, 0, 0.12), 0 4px 12px 0 rgba(0, 0, 0, 0.2)'
-      : 'none'};
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.12), 0 4px 12px 0 rgba(0, 0, 0, 0.2);
   .content {
     padding: 4px;
     max-width: ${props => props.theme.maxWidth};

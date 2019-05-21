@@ -13,7 +13,7 @@ const DEFAULT_OPTIONS = {
 };
 
 const api = {
-  async request({ url, method, data = {}, options = {} }) {
+  async request({ url, method, data = {} }) {
     try {
       const response = await axios(BASE_URL + url, {
         ...DEFAULT_OPTIONS,
@@ -38,7 +38,6 @@ const api = {
        *   createDate: string,
        * }
        */
-      console.log('BARBI ME ROMPISTE EL CÓDIGO');
       return api.request({ url: '/user/me', method: 'GET' });
     },
     points(amount) {

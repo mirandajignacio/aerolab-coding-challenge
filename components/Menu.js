@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Fragment } from 'react';
 import ArrowRightIcon from './icons/ArrowRightIcon';
 
 const MenuStyled = styled.div`
@@ -61,15 +62,14 @@ const Menu = ({ bottom }) => (
   <MenuStyled>
     <Products>16 of 32 products</Products>
     {!bottom && (
-      <>
+      <Fragment>
         <Divider />
         <Sort>Sort by:</Sort>
         <Filter active={true ? 1 : 0}>Most Recent</Filter>
         <Filter>Lowest Price</Filter>
         <Filter>Highest Price</Filter>
-      </>
+      </Fragment>
     )}
-
     <Icon className="icon">
       <ArrowRightIcon name="Next page" />
     </Icon>

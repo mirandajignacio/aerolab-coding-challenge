@@ -2,11 +2,14 @@ import Link from 'next/link';
 import Router from 'next/router';
 import styled from 'styled-components';
 import NProgress from 'nprogress';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import AeroIcon from './icons/AeroIcon';
 import DisplayCoin from './DisplayCoin';
 import NavStyled from './styled/Nav';
 import api from '../services/api';
+import { setUser } from '../store';
 
 NProgress.configure({ showSpinner: false });
 
@@ -42,37 +45,78 @@ const DisplayUser = styled.div`
     font-size: 20px;
   }
 `;
+class Nav extends Component {
+  async componentWillMount() {
+    const { setUser: setUserDispatch } = this.props;
+    const result = await api.user.me();
+    setUserDispatch({ user: result });
+    // setUser(result);
+  }
 
-const Nav = props => {
-  const [user, setUser] = useState({});
+  render() {
+    const { user } = this.props;
+    return (
+      <NavStyled>
+        <div className="content">
+          <Link href="/">
+            <a className="logo">
+              <AeroIcon />
+            </a>
+          </Link>
+          {user && (
+            <DisplayUser>
+              <p>{user.name}</p>
+              <DisplayCoin text={user.points} />
+            </DisplayUser>
+          )}
+        </div>
+        {/* <Button>INGRESAR</Button> */}
+      </NavStyled>
+    );
+  }
+}
 
-  useEffect(() => {
-    async function fetchData() {
-      const result = await api.user.me();
-      console.log(JSON.stringify(result));
-      setUser(result);
-    }
-    fetchData();
-  }, {});
+// const Nav = () => {
+//   const [user, setUser] = useState({});
 
-  return (
-    <NavStyled {...props}>
-      <div className="content">
-        <Link href="/">
-          <a className="logo">
-            <AeroIcon />
-          </a>
-        </Link>
-        {user && (
-          <DisplayUser>
-            <p>{user.name}</p>
-            <DisplayCoin text={user.points} />
-          </DisplayUser>
-        )}
-      </div>
-      {/* <Button>INGRESAR</Button> */}
-    </NavStyled>
-  );
-};
+//   useEffect(() => {
+//     async function fetchData() {
+//       const result = await api.user.me();
+//       console.log(JSON.stringify(result));
+//       setUser(result);
+//     }
+//     fetchData();
+//   }, []);
 
-export default Nav;
+//   return (
+//     <NavStyled>
+//       <div className="content">
+//         <Link href="/">
+//           <a className="logo">
+//             <AeroIcon />
+//           </a>
+//         </Link>
+//         {user && (
+//           <DisplayUser>
+//             <p>{user.name}</p>
+//             <DisplayCoin text={user.points} />
+//           </DisplayUser>
+//         )}
+//       </div>
+//       {/* <Button>INGRESAR</Button> */}
+//     </NavStyled>
+//   );
+// };
+
+function mapStateToProps(state) {
+  const { user } = state;
+  return { user };
+}
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ setUser }, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Nav);

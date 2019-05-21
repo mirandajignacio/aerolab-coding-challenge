@@ -81,49 +81,17 @@ a {
 }
 `;
 
-let lastScrollY = 0;
-let ticking = false;
+const lastScrollY = 0;
+const ticking = false;
 
 class Page extends Component {
-  state = {
-    scrolling: false,
-  };
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-  }
-
-  handleScroll = () => {
-    const { scrolling } = this.state;
-    lastScrollY = window.scrollY;
-
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        if (lastScrollY === 0) {
-          this.setState({ scrolling: false });
-        } else if (!scrolling) {
-          this.setState({ scrolling: true });
-        }
-
-        ticking = false;
-      });
-
-      ticking = true;
-    }
-  };
-
   render() {
-    const { scrolling } = this.state;
     const { children } = this.props;
     return (
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Meta />
-          <Nav scrolling={scrolling ? 1 : 0} />
+          <Nav />
           <Block />
           <Inner>{children}</Inner>
           <GlobalStyle />

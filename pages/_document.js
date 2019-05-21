@@ -1,6 +1,6 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 // Import styled components ServerStyleSheet
-import styled, { ServerStyleSheet } from 'styled-components';
+import { ServerStyleSheet } from 'styled-components';
 
 // const Body = styled.body`
 //   background-color: ${props => props.theme.lightgrey};
