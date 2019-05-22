@@ -15,6 +15,9 @@ const MenuStyled = styled.div`
   .filterContainer {
     display: flex;
   }
+  .filter {
+    margin-left: 24px;
+  }
   @media (max-width: 1176px) {
     text-align: center;
     width: 100%;
@@ -38,6 +41,9 @@ const MenuStyled = styled.div`
     grid-template-columns: 1fr;
     .filterContainer {
       flex-direction: column;
+    }
+    .filter {
+      margin: 4px;
     }
   }
 `;
@@ -67,7 +73,7 @@ const Filter = styled.div`
   display: flex;
   height: 48px;
   align-items: center;
-  margin-left: 24px;
+  /* margin-left: 24px; */
   padding: 8px 24px;
   border-radius: 24px;
   color: ${props => (props.active ? 'white' : '#a3a3a3')};
@@ -86,9 +92,11 @@ const Menu = ({ bottom }) => (
         <Divider className="divider" />
         <Sort>Sort by:</Sort>
         <div className="filterContainer">
-          <Filter active={true ? 1 : 0}>Most Recent</Filter>
-          <Filter>Lowest Price</Filter>
-          <Filter>Highest Price</Filter>
+          <Filter className="filter" active={true ? 1 : 0}>
+            Most Recent
+          </Filter>
+          <Filter className="filter">Lowest Price</Filter>
+          <Filter className="filter">Highest Price</Filter>
         </div>
       </Fragment>
     )}

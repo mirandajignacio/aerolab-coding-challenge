@@ -10,6 +10,7 @@ const Grid = styled.div`
   max-width: 1176px;
   justify-content: space-between;
   grid-template-columns: repeat(4, 276px);
+
   grid-template-rows: repeat(4, 300px);
 
   @media (max-width: 1176px) {
@@ -19,10 +20,6 @@ const Grid = styled.div`
   @media (max-width: 924px) {
     grid-template-columns: repeat(2, 276px);
   }
-
-  /* @media (max-width: 876px) {
-    justify-content: space-around;
-  } */
 
   @media (max-width: 576px) {
     grid-template-columns: 1fr;
