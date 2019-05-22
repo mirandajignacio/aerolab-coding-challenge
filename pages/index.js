@@ -15,11 +15,14 @@ const Flayer = styled.div`
   height: 400px;
   background-image: url('/static/header-x1.png');
   background-size: cover;
+  /* background-repeat: initial; */
+  background-position: right;
   position: relative;
+  /* filter: blur(1px); */
   h1 {
     color: white;
     position: absolute;
-    left: 132px;
+    /* left: 132px; */
     bottom: 48px;
   }
 `;
