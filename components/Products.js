@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import CardItem from './CardItem';
+import styled from "styled-components";
+import CardItem from "./CardItem";
 
 const Grid = styled.div`
   display: grid;
@@ -15,10 +15,12 @@ const Grid = styled.div`
 
   @media (max-width: 1176px) {
     grid-template-columns: repeat(3, 276px);
+    grid-template-rows: repeat(6, 300px);
   }
 
   @media (max-width: 924px) {
     grid-template-columns: repeat(2, 276px);
+    grid-template-rows: repeat(8, 300px);
   }
 
   @media (max-width: 576px) {
