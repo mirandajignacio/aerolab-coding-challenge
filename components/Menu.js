@@ -85,7 +85,7 @@ const Filter = styled.div`
   }
 `;
 
-const Menu = ({ bottom }) => (
+const Menu = ({ bottom, sort = 'most', handleSort }) => (
   <MenuStyled>
     <Products>16 of 32 products</Products>
     {!bottom && (
@@ -93,11 +93,27 @@ const Menu = ({ bottom }) => (
         <Divider className="divider" />
         <Sort>Sort by:</Sort>
         <div className="filterContainer">
-          <Filter className="filter" active={true ? 1 : 0}>
+          <Filter
+            onClick={() => handleSort('most')}
+            className="filter"
+            active={sort === 'most' ? 1 : 0}
+          >
             Most Recent
           </Filter>
-          <Filter className="filter">Lowest Price</Filter>
-          <Filter className="filter">Highest Price</Filter>
+          <Filter
+            onClick={() => handleSort('low')}
+            className="filter"
+            active={sort === 'low' ? 1 : 0}
+          >
+            Lowest Price
+          </Filter>
+          <Filter
+            onClick={() => handleSort('high')}
+            className="filter"
+            active={sort === 'high' ? 1 : 0}
+          >
+            Highest Price
+          </Filter>
         </div>
       </Fragment>
     )}

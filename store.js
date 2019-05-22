@@ -2,10 +2,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const initialState = {
-  user: {
-    name: 'Daki',
-  },
-  products: {},
+  user: null,
+  products: null,
 };
 
 export const actionTypes = {

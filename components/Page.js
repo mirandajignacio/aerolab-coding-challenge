@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Nav from './Nav';
 import Meta from './Meta';
+
+// import React, { useEffect, useState, Component } from 'react';
+import { setUser } from '../store';
+import api from '../services/api';
 
 const theme = {
   red: '#FF0000',
@@ -18,11 +24,6 @@ const theme = {
 const StyledPage = styled.div`
   background: ${props => props.theme.lightgrey};
   color: ${props => props.theme.black};
-`;
-
-const Inner = styled.div`
-  max-width: ${props => props.theme.maxWidth};
-  margin: auto;
 `;
 
 const Block = styled.div`
@@ -81,19 +82,29 @@ a {
 }
 `;
 
-const lastScrollY = 0;
-const ticking = false;
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
 
 class Page extends Component {
+  signIn = async () => {
+    const { setUser: setUserDispatch } = this.props;
+    const result = await api.user.me();
+    setUserDispatch({ user: result });
+  };
+
   render() {
-    const { children } = this.props;
+    const { children, user } = this.props;
     return (
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Meta />
-          <Nav />
+          <Nav handleSignIn={this.signIn} user={user} />
           <Block />
-          <Inner>{children}</Inner>
+          <Container>{children}</Container>
           <GlobalStyle />
         </StyledPage>
       </ThemeProvider>
@@ -101,4 +112,15 @@ class Page extends Component {
   }
 }
 
-export default Page;
+function mapStateToProps(state) {
+  const { user } = state;
+  return { user };
+}
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ setUser }, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Page);

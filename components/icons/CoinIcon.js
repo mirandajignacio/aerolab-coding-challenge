@@ -1,6 +1,6 @@
 const CoinIcon = ({ name }) => (
   <svg
-    id="money"
+    id="coin"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     width="24"
@@ -21,7 +21,7 @@ const CoinIcon = ({ name }) => (
       </radialGradient>
     </defs>
     <circle
-      id="Oval_Copy_3"
+      id="circle"
       cx="12"
       cy="12"
       r="12"

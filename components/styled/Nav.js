@@ -5,13 +5,25 @@ const Nav = styled.header`
   background: white;
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   position: fixed;
   top: 0;
   z-index: 9;
   transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.12), 0 4px 12px 0 rgba(0, 0, 0, 0.2);
-  .content {
+  padding: 0 40px;
+  .logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  @media (max-width: 576px) {
+    padding: 0 20px;
+    }
+  /* .content {
     padding: 4px;
     max-width: ${props => props.theme.maxWidth};
     height: 80px;
@@ -27,7 +39,7 @@ const Nav = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
+  } */
 `;
 
 export default Nav;
