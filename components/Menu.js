@@ -71,7 +71,7 @@ const Divider = styled.div`
 const Filter = styled.div`
   /* align-self: flex-end; */
   display: flex;
-  height: 48px;
+  max-height: 48px;
   align-items: center;
   /* margin-left: 24px; */
   padding: 8px 24px;
