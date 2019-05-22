@@ -11,18 +11,26 @@ const Card = styled.div`
   min-height: 276px;
   max-width: 276px;
   max-height: 276px;
-  box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   flex-direction: column;
-  position: relative;
-  margin-bottom: 24px;
+  align-self: flex-end;
+
+  /* position: relative; */
+  /* margin-bottom: 24px; */
+  padding: 12px;
   &:hover {
-    transition: all 0.2s ease;
+    transition: all 0.4s ease;
+    /* align-self: center; */
+    /* margin-bottom: 12px; */
+    box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.12), 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+    /* box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.1); */
     box-shadow: ${props =>
       props.disabled
-        ? '1px 1px 2px 0 rgba(0, 0, 0, 0.1)'
-        : '0 0 12px 0 rgba(0, 0, 0, 0.12), 0 4px 12px 0 rgba(0, 0, 0, 0.2)'};
+        ? '2px 2px 4px 0 rgba(0, 0, 0, 0.1)'
+        : '12px 12px 32px 0 rgba(0, 0, 0, 0.4)'};
+    margin-bottom: ${props => (props.disabled ? '0px' : '12px')};
     .overlay {
       display: flex;
     }
@@ -30,54 +38,41 @@ const Card = styled.div`
 `;
 const Overlay = styled.div`
   display: none;
-  min-width: 276px;
-  min-height: 276px;
-  max-width: 276px;
-  max-height: 276px;
-  position: absolute;
-  background: linear-gradient(to bottom, #0ad4fa, #25bbf1);
-  opacity: 0.86;
-  z-index: 1;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  span {
-    color: white;
-    font-size: 36px;
-    margin-right: 8px;
-  }
+  height: 276px;
+  width: 276px;
+  position: absolute;
+  margin-top: -12px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(10, 212, 250, 0.86),
+    rgba(37, 187, 241, 0.86)
+  );
+  z-index: 1;
 `;
 
-const OverlayContent = styled.div`
-  display: none;
-  min-width: 276px;
-  min-height: 276px;
-  max-width: 276px;
-  max-height: 276px;
-  position: absolute;
-  z-index: 1;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  flex-direction: column;
-  span {
-    color: white;
-    font-size: 36px;
-    margin-right: 8px;
-  }
-`;
 const Image = styled.img`
   width: 252px;
   height: 182px;
 `;
+
 const Divider = styled.div`
   width: 228px;
   border-bottom: 1px solid #d9d9d9;
 `;
 
-const Price = styled.div``;
+const Price = styled.div`
+  span {
+    color: white;
+    font-size: 36px;
+
+    margin-right: 8px;
+  }
+`;
 const Wrapper = styled.div`
-  padding: 12px;
+  /* padding: 12px 12px 0 12px; */
   position: relative;
   width: 100%;
 `;
@@ -149,7 +144,7 @@ const Action = styled.div`
   }
 `;
 
-const Button = styled.button`
+const Button = styled.div`
   cursor: pointer;
   width: 228px;
   height: 36px;
@@ -164,6 +159,8 @@ const Button = styled.button`
   border: none;
   color: #616161;
   font-size: 18px;
+  margin: 12px;
+  max-height: 36px;
   span {
   }
 `;
@@ -184,16 +181,16 @@ const CardItem = ({ item }) => {
     >
       {cost < 1000 ? (
         <Fragment>
+          {/* <div>
           <Overlay className="overlay">
-            {/* <div>
             <span>{cost}</span>
             <CoinIcon />
             </div>
             <Action>
             <span>REDEEM NOW</span>
+            </Overlay>
           </Action> */}
-          </Overlay>
-          <OverlayContent className="overlay">
+          <Overlay className="overlay">
             <Price>
               <span>{format(cost)}</span>
               <CoinIcon />
@@ -202,7 +199,7 @@ const CardItem = ({ item }) => {
             {/* <Action>
               <span>REDEEM NOW</span>
             </Action> */}
-          </OverlayContent>
+          </Overlay>
         </Fragment>
       ) : null}
 

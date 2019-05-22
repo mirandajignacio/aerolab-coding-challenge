@@ -6,18 +6,38 @@ const MenuStyled = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: start;
-  width: 100%;
-  /* max-width: 1176px; */
+  width: 1176px;
   margin-top: 64px;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
   padding-bottom: 24px;
   border-bottom: 1px solid #d9d9d9;
   position: relative;
+  .filterContainer {
+    display: flex;
+  }
   @media (max-width: 1176px) {
-    padding-right: 8px;
-    padding-left: 8px;
+    text-align: center;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
     .icon {
-      margin-right: 8px;
+      position: relative;
+      margin-top: 16px;
+      height: 48px;
+    }
+    .divider {
+      display: none;
+    }
+    /* padding-left: 16px;
+    .icon {
+      margin-right: 16px;
+    } */
+  }
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+    .filterContainer {
+      flex-direction: column;
     }
   }
 `;
@@ -63,11 +83,13 @@ const Menu = ({ bottom }) => (
     <Products>16 of 32 products</Products>
     {!bottom && (
       <Fragment>
-        <Divider />
+        <Divider className="divider" />
         <Sort>Sort by:</Sort>
-        <Filter active={true ? 1 : 0}>Most Recent</Filter>
-        <Filter>Lowest Price</Filter>
-        <Filter>Highest Price</Filter>
+        <div className="filterContainer">
+          <Filter active={true ? 1 : 0}>Most Recent</Filter>
+          <Filter>Lowest Price</Filter>
+          <Filter>Highest Price</Filter>
+        </div>
       </Fragment>
     )}
     <Icon className="icon">

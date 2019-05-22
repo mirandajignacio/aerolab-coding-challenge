@@ -31,7 +31,13 @@ const Content = styled.div`
 `;
 
 const Body = styled.div`
-  max-width: 1176px;
+  /* max-width: 1176px; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export default function Index() {
