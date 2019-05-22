@@ -75,6 +75,7 @@ const Filter = styled.div`
   align-items: center;
   /* margin-left: 24px; */
   padding: 8px 24px;
+  text-align: center;
   border-radius: 24px;
   color: ${props => (props.active ? 'white' : '#a3a3a3')};
   background: ${props => (props.active ? '#0AD4FA' : '#ededed')};
