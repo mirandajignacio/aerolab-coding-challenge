@@ -17,7 +17,7 @@
   "author": "Miranda J. Ignacio",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "next": "^8.1.0",
     "nprogress": "^0.2.0",
     "react": "^16.8.6",
